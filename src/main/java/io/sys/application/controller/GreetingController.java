@@ -1,7 +1,6 @@
 package io.sys.application.controller;
 
-import io.sys.application.domain.Greeting;
-import io.sys.application.domain.HelloMessage;
+import io.sys.application.domain.PubMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -11,9 +10,9 @@ import org.springframework.web.util.HtmlUtils;
 public class GreetingController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage message) throws Exception {
+    public PubMessage greeting(PubMessage message) throws Exception {
         Thread.sleep(1000); // simulated delay
         System.out.println("message: " + message.getName());
-        return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+        return new PubMessage(HtmlUtils.htmlEscape(message.getName()) + " 님", message.getMessage());
     }
 }
