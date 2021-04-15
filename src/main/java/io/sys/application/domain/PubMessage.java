@@ -20,5 +20,4 @@ public class PubMessage {
         this.message = message;
         this.timestamp = ZonedDateTime.now().toEpochSecond();
     }
-
 }
